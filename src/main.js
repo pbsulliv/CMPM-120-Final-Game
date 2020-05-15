@@ -21,7 +21,7 @@ let config = {
             }
         }
     },
-    scene: [ Menu, Play ]
+    scene: [ Menu, Play, LabScene2 ]
 
 }
 

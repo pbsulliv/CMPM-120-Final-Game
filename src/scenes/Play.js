@@ -19,6 +19,9 @@ class Play extends Phaser.Scene {
       // reset parameters
       time = 0;
 
+      // set up cursor keys
+      cursors = this.input.keyboard.createCursorKeys();
+
       //place tilesprite
       this.background1 = this.add.tileSprite(0, 0, 2379, 1791, 'background1').setOrigin(0, 0).setScale(.269,.268);
 
@@ -50,6 +53,10 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+      //scene switching
+      if(cursors.right.isDown) {
+        this.scene.start('Lab2Scene');
+      }
     }
 
     //functions
