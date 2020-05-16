@@ -62,6 +62,7 @@ class Play extends Phaser.Scene {
     //functions
     removeItem(pointer, localX, localY, event) {
       let scenecxt = this.scene;  // get scene context before we kill the object
+      this.text = scenecxt.add.text(500, 300, "click");
       this.destroy();             // destroy the child obj  
     }
 
