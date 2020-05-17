@@ -63,7 +63,7 @@ class Play extends Phaser.Scene {
       }
 
       if(points === 1){
-        this.scene.start('GoodEnd.js');
+        this.scene.start('GoodEndScene');
       }
 
       this.timerRight.text = time;

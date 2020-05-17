@@ -18,6 +18,16 @@ class GoodEnd extends Phaser.Scene {
           fixedWidth: 0
       }
   
-      this.add.text(centerX, (centerY - (centerY/2))-60, ' Good End ', menuConfig).setOrigin(0.5);
+      this.add.text(centerX, (centerY - (centerY/2))-60, ' Good End Press Space', menuConfig).setOrigin(0.5);
+
+      // define keys
+      keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    }
+
+    update() {
+        // check for SPACE input
+        if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+          this.scene.start('menuScene');
+        }
     }
 }
