@@ -57,6 +57,9 @@ class Play extends Phaser.Scene {
       if(cursors.right.isDown) {
         this.scene.start('Lab2Scene');
       }
+
+      this.timerRight.text = time;
+
     }
 
     //functions
