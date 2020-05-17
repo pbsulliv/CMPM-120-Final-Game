@@ -18,6 +18,7 @@ class Play extends Phaser.Scene {
     create() {
       // reset parameters
       time = 0;
+      points = 0;
 
       // set up cursor keys
       cursors = this.input.keyboard.createCursorKeys();
@@ -50,6 +51,9 @@ class Play extends Phaser.Scene {
       //add timer to screen
       this.timerRight = this.add.text(500, 30, time);
 
+      //add points to screen
+      this.pointsLeft = this.add.text(140, 30, points);
+
     }
 
     update() {
@@ -58,7 +62,13 @@ class Play extends Phaser.Scene {
         this.scene.start('Lab2Scene');
       }
 
+      if(points === 1){
+        this.scene.start('GoodEnd.js');
+      }
+
       this.timerRight.text = time;
+
+      this.pointsLeft.text = points;
 
     }
 
@@ -66,6 +76,7 @@ class Play extends Phaser.Scene {
     removeItem(pointer, localX, localY, event) {
       let scenecxt = this.scene;  // get scene context before we kill the object
       this.text = scenecxt.add.text(500, 300, "click");
+      points++;
       this.destroy();             // destroy the child obj  
     }
 
