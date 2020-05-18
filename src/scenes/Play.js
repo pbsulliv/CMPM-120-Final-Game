@@ -5,14 +5,19 @@ class Play extends Phaser.Scene {
     
     preload() {
       // load background
-      this.load.image('background1', './assets/Paper.Journal.6.jpg');
+      this.load.image('background1', './assets/Background1.png');
 
       // load images
+      this.load.image('PurpleFlask', './assets/Images/PurpleFlask.jpg');
+
+
       // load asset path
+      /*
       this.load.path = './assets/Images/';
       this.load.image([
-        { key: '8ball' },
+        { key: 'PurpleFlask' },
       ]);
+      */
     }
 
     create() {
@@ -24,13 +29,15 @@ class Play extends Phaser.Scene {
       cursors = this.input.keyboard.createCursorKeys();
 
       //place tilesprite
-      this.background1 = this.add.tileSprite(0, 0, 2379, 1791, 'background1').setOrigin(0, 0).setScale(.269,.268);
+      //this.background1 = this.add.tileSprite(0, 0, 2379, 1791, 'background1').setOrigin(0, 0).setScale(.269,.268); //old background
+      this.background1 = this.add.tileSprite(0, 0, 640, 480, 'background1').setOrigin(0, 0);
+
 
       // create group to hold clickable objects
       this.click = this.add.group();
       //create the sprite
       // create( [x] [, y] [, key] [, frame] [, visible] [, active])
-      let click = this.click.create(100,100, '8ball');
+      let click = this.click.create(330, 62, 'PurpleFlask');
       // make click group interactive so we can click (and remove) it
       // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObject.html#setInteractive
       click.setInteractive({
