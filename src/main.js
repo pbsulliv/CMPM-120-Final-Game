@@ -21,7 +21,7 @@ let config = {
             }
         }
     },
-    scene: [ Menu, Play, LabScene2, GoodEnd ]
+    scene: [ Menu, Play, LabScene2, GoodEnd, BadEnd ]
 
 }
 
@@ -35,6 +35,7 @@ let centerY = game.config.height/2;
 let cursors;
 let time;
 let points;
+const inventory = {};
 
 // reserve keyboard vars
-let keySPACE
+let keySPACE;
