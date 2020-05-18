@@ -33,9 +33,10 @@ let game = new Phaser.Game(config);
 let centerX = game.config.width/2;
 let centerY = game.config.height/2;
 let cursors;
-let time;
-let points;
-const inventory = {};
+// reset parameters
+let time = 0;
+let points = 0;
+let inventory = {};
 
 // reserve keyboard vars
 let keySPACE;

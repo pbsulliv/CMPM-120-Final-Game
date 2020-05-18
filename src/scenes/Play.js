@@ -12,6 +12,11 @@ class Play extends Phaser.Scene {
 
       this.load.image('PurpleTube', './assets/Images/PurpleTube.jpg');
 
+      // load sfx
+      this.load.audio('foundpart', './assets/foundpart.wav')
+      this.load.audio('foundcoin', './assets/foundcoin.wav')
+      this.load.audio('noluck', './assets/noluck.wav')
+
       // load asset path
       /*
       this.load.path = './assets/Images/';
@@ -22,9 +27,6 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-      // reset parameters
-      time = 0;
-      points = 0;
 
       // set up cursor keys
       cursors = this.input.keyboard.createCursorKeys();
@@ -41,19 +43,23 @@ class Play extends Phaser.Scene {
 
       for (let i = 0; i < sprites.length; i++) {
         const currentSprite = sprites[i];
+        const spriteKey = currentSprite.name;
 
-        //create the sprite
-        // create( [x] [, y] [, key] [, frame] [, visible] [, active])
-        const click = this.click.create(currentSprite.x, currentSprite.y, currentSprite.name);
-       
-        // make click group interactive so we can click (and remove) it
-        // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObject.html#setInteractive
-        click.setInteractive({
-          useHandCursor: true,
-        });
-        // call a function when the mouse clicks on the interactive object
-        // https://photonstorm.github.io/phaser3-docs/Phaser.Input.Events.html#event:GAMEOBJECT_POINTER_DOWN__anchor
-        click.on('pointerdown', this.removeItem);
+        if (!(spriteKey in inventory)) {
+          //create the sprite
+          // create( [x] [, y] [, key] [, frame] [, visible] [, active])
+          const click = this.click.create(currentSprite.x, currentSprite.y, spriteKey);
+        
+          // make click group interactive so we can click (and remove) it
+          // https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObject.html#setInteractive
+          click.setInteractive({
+            useHandCursor: true,
+          });
+          // call a function when the mouse clicks on the interactive object
+          // https://photonstorm.github.io/phaser3-docs/Phaser.Input.Events.html#event:GAMEOBJECT_POINTER_DOWN__anchor
+          click.on('pointerdown', this.removeItem);
+          this.sound.play('foundpart');
+        }
       }
 
       // set up timer (triggers callback every second)
@@ -80,10 +86,12 @@ class Play extends Phaser.Scene {
 
       if(points === 2){
         this.scene.start('GoodEndScene');
+        this.sound.play('foundcoin');
       }
 
       if(time === 12){
         this.scene.start('BadEndScene');
+        this.sound.play('noluck');
       }
 
       this.timerRight.text = time;
@@ -95,6 +103,13 @@ class Play extends Phaser.Scene {
     //functions
     removeItem(pointer, localX, localY, event) {
       let scenecxt = this.scene;  // get scene context before we kill the object
+
+      // get the key of the texture clicked
+      const key = this.frame.texture.key;
+
+      // add it to the player's inventory
+      inventory[key] = true;
+
       //this.text = scenecxt.add.text(500, 300, "click"); //for testing
       points++;
       this.destroy();             // destroy the child obj  
