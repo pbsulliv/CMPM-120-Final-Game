@@ -31,9 +31,8 @@ class NarrativeScene2 extends Phaser.Scene {
 
         let textConfig = {
             fontFamily: 'Times New Roman',
-            fontSize: '20px',
+            fontSize: '19px',
             color: '#ffb90f',
-            color: '#33A2FF',
             align: 'left',
             fontStyle: 'bold',
         }
@@ -78,20 +77,19 @@ class NarrativeScene2 extends Phaser.Scene {
 
         let text = this.add.text(32, 32, '', {font: "15px Arial", fill: "#000000"});
 
-        this.add.sprite(game.config.width/2-252, game.config.height/2+185, 'leftArrow').setScale(.5, .5).setOrigin(0, 0);
+        this.add.sprite(game.config.width/2-258, game.config.height/2+185, 'leftArrow').setScale(.5, .5).setOrigin(0, 0);
 
         //define keys
         let TransitionText = this.add.text(game.config.width/2-310, game.config.height/2+210, 'PRESS               TO GO BACK',
          textConfig).setOrigin(0, 0);
 
-        this.add.sprite(game.config.width/2+85, game.config.height/2+185, 'rightArrow').setScale(.5, .5).setOrigin(0, 0);
+        this.add.sprite(game.config.width/2+82, game.config.height/2+185, 'rightArrow').setScale(.5, .5).setOrigin(0, 0);
 
         //define keys
         let TransitionText2 = this.add.text(game.config.width/2+30, game.config.height/2+210, 'PRESS               TO CONTINUE',
          textConfig).setOrigin(0, 0);
-            this.add.text(centerX-55, centerY+170, "Good luck!", textConfig);
 
-        let text = this.add.text(32, 32, 'story2', {font: "15px Arial", fill: "#000000"});
+        this.add.text(32, 32, '', {font: "15px Arial", fill: "#000000"});
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
