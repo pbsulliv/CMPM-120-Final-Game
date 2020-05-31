@@ -16,6 +16,7 @@ class Play extends Phaser.Scene {
       this.load.audio('foundpart', './assets/foundpart.wav')
       this.load.audio('foundcoin', './assets/foundcoin.wav')
       this.load.audio('noluck', './assets/noluck.wav')
+      this.load.audio('bgmusic', './assets/Bobber Loop.wav')
 
       // load asset path
       /*
@@ -34,6 +35,8 @@ class Play extends Phaser.Scene {
       //place tilesprite
       //this.background1 = this.add.tileSprite(0, 0, 2379, 1791, 'background1').setOrigin(0, 0).setScale(.269,.268); //old background
       this.background1 = this.add.tileSprite(0, 0, 640, 480, 'background1').setOrigin(0, 0);
+
+      this.sound.play('bgmusic');
 
 
       // create group to hold clickable objects
@@ -57,8 +60,9 @@ class Play extends Phaser.Scene {
           });
           // call a function when the mouse clicks on the interactive object
           // https://photonstorm.github.io/phaser3-docs/Phaser.Input.Events.html#event:GAMEOBJECT_POINTER_DOWN__anchor
-          click.on('pointerdown', this.removeItem);
           this.sound.play('foundpart');
+          click.on('pointerdown', this.removeItem);
+          
         }
       }
 
@@ -86,11 +90,13 @@ class Play extends Phaser.Scene {
 
       if(points === 2){
         this.scene.start('GoodEndScene');
+        game.sound.stopAll();
         this.sound.play('foundcoin');
       }
 
       if(time === 12){
         this.scene.start('BadEndScene');
+        game.sound.stopAll();
         this.sound.play('noluck');
       }
 
@@ -101,7 +107,8 @@ class Play extends Phaser.Scene {
     }
 
     //functions
-    removeItem(pointer, localX, localY, event) {
+    removeItem(pointer, localX, localY, event,) {
+      
       let scenecxt = this.scene;  // get scene context before we kill the object
 
       // get the key of the texture clicked
@@ -112,8 +119,11 @@ class Play extends Phaser.Scene {
 
       //this.text = scenecxt.add.text(500, 300, "click"); //for testing
       points++;
-      this.destroy();             // destroy the child obj  
+      this.destroy();    
+      this.foundcoin.play();        // destroy the child obj  
     }
+
+  
 
     timeBump() {
       // increment level (aka score)
