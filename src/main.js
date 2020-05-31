@@ -56,4 +56,8 @@ let points = 0;
 let inventory = {};
 
 // reserve keyboard vars
+<<<<<<< HEAD
 let keySPACE, keyLEFT, keyRIGHT;
+=======
+let keySPACE, keyLEFT, keyRIGHT;
+>>>>>>> 753737d57aebec0f7e5668a09480afd57ed8bb2f

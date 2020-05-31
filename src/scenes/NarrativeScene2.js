@@ -33,6 +33,7 @@ class NarrativeScene2 extends Phaser.Scene {
             fontFamily: 'Times New Roman',
             fontSize: '20px',
             color: '#ffb90f',
+            color: '#33A2FF',
             align: 'left',
             fontStyle: 'bold',
         }
@@ -60,6 +61,7 @@ class NarrativeScene2 extends Phaser.Scene {
             "YOURSELF",
             "You passed out 5 seconds in",
             "But don't worry I've kept your lab in tip top shape while you \nwere out\n",
+            "But don't worry I've kept your lab in tip top shape while you were out\n",
             "Okay, now that you're all caught up\n",
             "Don't freak out, but you shrunk by about 4 inches from 5 hours ago",
             "And you're still shrinking\n",
@@ -87,6 +89,9 @@ class NarrativeScene2 extends Phaser.Scene {
         //define keys
         let TransitionText2 = this.add.text(game.config.width/2+30, game.config.height/2+210, 'PRESS               TO CONTINUE',
          textConfig).setOrigin(0, 0);
+            this.add.text(centerX-55, centerY+170, "Good luck!", textConfig);
+
+        let text = this.add.text(32, 32, 'story2', {font: "15px Arial", fill: "#000000"});
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -129,3 +134,4 @@ class NarrativeScene2 extends Phaser.Scene {
         }
     }
 }
+

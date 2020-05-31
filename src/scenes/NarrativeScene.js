@@ -11,10 +11,8 @@ class NarrativeScene extends Phaser.Scene {
     }
     
     create(){
-        
         //adding background image
         this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
-
         //add audio
         var Voice1 = this.sound.add('Voice1');
         this.sound.play('Voice1');
@@ -28,6 +26,7 @@ class NarrativeScene extends Phaser.Scene {
             fontFamily: 'Times New Roman',
             fontSize: '20px',
             color: '#ffb90f',
+            color: '#33A2FF',
             align: 'left',
             fontStyle: 'bold',
         }
@@ -50,6 +49,7 @@ class NarrativeScene extends Phaser.Scene {
             "You made a fully functioning shrink ray!\n",
             ], textConfig).setOrigin(0, 0);
 
+
         let text = this.add.text(32, 32, '', {font: "15px Arial", fill: "#000000"});
 
         this.add.sprite(game.config.width/2+50, game.config.height/2+185, 'rightArrow').setScale(.5, .5).setOrigin(0, 0);
@@ -57,6 +57,13 @@ class NarrativeScene extends Phaser.Scene {
         //define keys
         let TransitionText = this.add.text(game.config.width/2-10, game.config.height/2+210, 'PRESS               TO CONTINUE',
          textConfig).setOrigin(0, 0);
+
+        let text = this.add.text(32, 32, 'story', {font: "15px Arial", fill: "#000000"});
+
+        //define keys
+        let TransitionText = this.add.text(game.config.width/2-125, game.config.height/2+190, 'PRESS SPACEBAR TO CONTINUE...',
+         textConfig).setOrigin(0, 0); 
+
     
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
