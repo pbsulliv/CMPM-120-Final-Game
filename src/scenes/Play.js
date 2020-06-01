@@ -118,9 +118,10 @@ class Play extends Phaser.Scene {
       inventory[key] = true;
 
       //this.text = scenecxt.add.text(500, 300, "click"); //for testing
-      points++;
+      //points++;
       this.destroy();    
-      this.foundcoin.play();        // destroy the child obj  
+      //this.foundcoin.play();        // destroy the child obj  
+      scenecxt.scene.start('tiledPlatformScene');
     }
 
   

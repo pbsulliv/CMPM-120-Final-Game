@@ -7,10 +7,15 @@ let narrativeScene = new NarrativeScene();
 let narrativeScene2 = new NarrativeScene2();
 let menuScene = new Menu();
 let playScene = new Play(); 
+let tiledPlatformScene = new TiledPlatform();
 
 let config = {
     parent: 'myGame',
     type: Phaser.CANVAS,
+    render: {
+        pixelArt: true
+    },
+
     height: 480,
     width: 640,
     scale: {
@@ -27,7 +32,7 @@ let config = {
             }
         }
     },
-    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, LabScene2, GoodEnd, BadEnd ]
+    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, LabScene2, GoodEnd, BadEnd]
 
 }
 
@@ -45,6 +50,8 @@ game.scene.start('menuScene');
 game.scene.add('menuScene', menuScene);
 
 game.scene.add('playScene', playScene);
+
+game.scene.add('tiledPlatformScene', tiledPlatformScene);
 
 // Define Global Vars
 let centerX = game.config.width/2;
