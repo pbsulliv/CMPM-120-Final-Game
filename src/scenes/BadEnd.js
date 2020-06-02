@@ -22,6 +22,18 @@ class BadEnd extends Phaser.Scene {
 
       // define keys
       keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+      var endgame = this.add.sprite(0, 0, 'endgameAni').setOrigin(0, 0);
+
+      // end game animation config
+      this.anims.create({
+        key: 'endgameAni',
+        frames: this.anims.generateFrameNumbers('GameEnd', { start: 0, end: 98, first: 0}),
+        frameRate: 30
+      });
+
+      endgame.anims.play('endgameAni');
+
     }
 
     update() {

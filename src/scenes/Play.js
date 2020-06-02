@@ -12,6 +12,9 @@ class Play extends Phaser.Scene {
 
       this.load.image('PurpleTube', './assets/Images/PurpleTube.jpg');
 
+      // load spritesheet
+      this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
+
       // load sfx
       this.load.audio('foundpart', './assets/foundpart.wav')
       this.load.audio('foundcoin', './assets/foundcoin.wav')
