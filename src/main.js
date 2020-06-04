@@ -8,6 +8,7 @@ let narrativeScene2 = new NarrativeScene2();
 let menuScene = new Menu();
 let playScene = new Play(); 
 let tiledPlatformScene = new TiledPlatform();
+let slipperyPlatformScene = new SlipperyPlatform();
 
 let config = {
     parent: 'myGame',
@@ -32,7 +33,7 @@ let config = {
             }
         }
     },
-    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, LabScene2, GoodEnd, BadEnd]
+    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LabScene2, GoodEnd, BadEnd]
 
 }
 
@@ -52,6 +53,8 @@ game.scene.add('menuScene', menuScene);
 game.scene.add('playScene', playScene);
 
 game.scene.add('tiledPlatformScene', tiledPlatformScene);
+
+game.scene.add('slipperyPlatformScene', slipperyPlatformScene);
 
 // Define Global Vars
 let centerX = game.config.width/2;

@@ -124,7 +124,8 @@ class Play extends Phaser.Scene {
       //points++;
       this.destroy();    
       //this.foundcoin.play();        // destroy the child obj  
-      scenecxt.scene.start('tiledPlatformScene');
+      //scenecxt.scene.start('tiledPlatformScene');
+      scenecxt.scene.start('slipperyPlatformScene');
     }
 
   
