@@ -1,6 +1,10 @@
 class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
+
+      //variables
+      //array of platform levels
+      this.randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];
     }
     
     preload() {
@@ -112,7 +116,7 @@ class Play extends Phaser.Scene {
     //functions
     removeItem(pointer, localX, localY, event,) {
       
-      let scenecxt = this.scene;  // get scene context before we kill the object
+      const scenecxt = this.scene;  // get scene context before we kill the object
 
       // get the key of the texture clicked
       const key = this.frame.texture.key;
@@ -125,7 +129,16 @@ class Play extends Phaser.Scene {
       this.destroy();    
       //this.foundcoin.play();        // destroy the child obj  
       //scenecxt.scene.start('tiledPlatformScene');
-      scenecxt.scene.start('slipperyPlatformScene');
+
+      // get a random platform level from the array of levels
+      // remove the platform so that entry can't be used again
+      const platforms = scenecxt.randPlat;
+      const platformIndex = Math.floor(Math.random() * platforms.length);
+      const scene = platforms[platformIndex];
+      platforms.splice(platformIndex, 1);
+
+      scenecxt.scene.start(scene);
+      //scenecxt.scene.start('slipperyPlatformScene');
     }
 
   

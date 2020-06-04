@@ -20,6 +20,7 @@ class SlipperyPlatform extends Phaser.Scene {
         });
         */
         this.load.image("player", "Person.png");    // player
+        this.load.image("clock", "Clock.png");      // clock item
         this.load.image("2bit_tiles", "SlipTS.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map2", "SlipPlatform.json");    // Tiled JSON file
     }
@@ -64,6 +65,11 @@ class SlipperyPlatform extends Phaser.Scene {
         this.p1.body.setSize(this.p1.width/2);
         this.p1.body.setMaxVelocity(this.MAX_X_VEL, this.MAX_Y_VEL);
         this.p1.body.setCollideWorldBounds(true);
+
+        // set up clock item
+        this.clock = this.physics.add.sprite(50, 350, "clock");
+        this.clock.body.setMaxVelocity(0, 0);
+        this.clock.body.setCollideWorldBounds(true);
         
         /* TO-DO: player animations */
 
@@ -93,6 +99,7 @@ class SlipperyPlatform extends Phaser.Scene {
         // create collider(s)/overlap(s)
         this.physics.add.collider(this.p1, groundLayer, this.groundCollision, null, this);
         this.physics.add.collider(this.p1, slipgroundLayer, this.slipGroundCollision, null, this);
+        this.physics.add.collider(this.p1, this.clock, this.slipClockCollision, null, this);
 
         //this.physics.add.collider(this.p1, sceneryLayer, (p1, scenery) => {
             //this.scene.start('playScene');
@@ -181,6 +188,11 @@ class SlipperyPlatform extends Phaser.Scene {
             //for sliding with no friction
             this.p1.body.setVelocityX(this.p1.body.velocity.x * 1);
         }
+    }
+
+    slipClockCollision(){
+        this.clock.destroy();
+        time = (time - 10);  //add time
     }
     
 }
