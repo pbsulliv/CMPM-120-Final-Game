@@ -1,5 +1,35 @@
 'use strict';
 
+// Define Global Vars
+let cursors;
+let time;
+let points = 0;
+let inventory = {};
+
+// decrease the amount of time left
+function timeBump() {
+    time--;
+}
+
+// time display
+const timerConfig = {
+    fontFamily: 'Courier',
+    fontSize: '28px',
+    backgroundColor: '#F3B141',
+    color: '#843605',
+};
+
+// timer configuration
+const countdownConfig = {
+    delay: 1000,
+    callback: timeBump,
+    callbackScope: this,
+    loop: true
+};
+
+// reserve keyboard vars
+let keySPACE, keyLEFT, keyRIGHT;
+
 // define and configure main Phaser game object
 
 let titleScene = new TitleScene();
@@ -7,10 +37,16 @@ let narrativeScene = new NarrativeScene();
 let narrativeScene2 = new NarrativeScene2();
 let menuScene = new Menu();
 let playScene = new Play(); 
+let tiledPlatformScene = new TiledPlatform();
+let slipperyPlatformScene = new SlipperyPlatform();
 
 let config = {
     parent: 'myGame',
     type: Phaser.CANVAS,
+    render: {
+        pixelArt: true
+    },
+
     height: 480,
     width: 640,
     scale: {
@@ -27,7 +63,7 @@ let config = {
             }
         }
     },
-    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, LabScene2, GoodEnd, BadEnd ]
+    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LabScene2, GoodEnd, BadEnd]
 
 }
 
@@ -46,14 +82,17 @@ game.scene.add('menuScene', menuScene);
 
 game.scene.add('playScene', playScene);
 
-// Define Global Vars
-let centerX = game.config.width/2;
-let centerY = game.config.height/2;
-let cursors;
-// reset parameters
-let time = 0;
-let points = 0;
-let inventory = {};
+game.scene.add('tiledPlatformScene', tiledPlatformScene);
 
-// reserve keyboard vars
-let keySPACE, keyLEFT, keyRIGHT;
+game.scene.add('slipperyPlatformScene', slipperyPlatformScene);
+
+const centerX = game.config.width/2;
+const centerY = game.config.height/2;
+
+function checkOutOfTime(theScene) {
+    if(time === 0) {
+        theScene.scene.start('BadEndScene');
+        game.sound.stopAll();
+        theScene.sound.play('noluck');
+    }
+}

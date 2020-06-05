@@ -1,6 +1,10 @@
 class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
+
+      //variables
+      //array of platform levels
+      this.randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];
     }
     
     preload() {
@@ -11,6 +15,9 @@ class Play extends Phaser.Scene {
       this.load.image('PurpleFlask', './assets/Images/PurpleFlask.jpg');
 
       this.load.image('PurpleTube', './assets/Images/PurpleTube.jpg');
+
+      // load spritesheet
+      this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
 
       // load sfx
       this.load.audio('foundpart', './assets/foundpart.wav')
@@ -67,19 +74,13 @@ class Play extends Phaser.Scene {
       }
 
       // set up timer (triggers callback every second)
-      this.Timer = this.time.addEvent({
-        delay: 1000,
-        callback: this.timeBump,
-        callbackScope: this,
-        loop: true
-      });
+      this.Timer = this.time.addEvent(countdownConfig);
 
       //add timer to screen
-      this.timerRight = this.add.text(500, 30, time);
+      this.timerRight = this.add.text(500, 30, time, timerConfig);
 
       //add points to screen
       this.pointsLeft = this.add.text(140, 30, points);
-
     }
 
     update() {
@@ -94,12 +95,9 @@ class Play extends Phaser.Scene {
         this.sound.play('foundcoin');
       }
 
-      if(time === 12){
-        this.scene.start('BadEndScene');
-        game.sound.stopAll();
-        this.sound.play('noluck');
-      }
-
+      // have we run out of time
+      checkOutOfTime(this);
+    
       this.timerRight.text = time;
 
       this.pointsLeft.text = points;
@@ -109,7 +107,7 @@ class Play extends Phaser.Scene {
     //functions
     removeItem(pointer, localX, localY, event,) {
       
-      let scenecxt = this.scene;  // get scene context before we kill the object
+      const scenecxt = this.scene;  // get scene context before we kill the object
 
       // get the key of the texture clicked
       const key = this.frame.texture.key;
@@ -118,15 +116,19 @@ class Play extends Phaser.Scene {
       inventory[key] = true;
 
       //this.text = scenecxt.add.text(500, 300, "click"); //for testing
-      points++;
+      //points++;
       this.destroy();    
-      this.foundcoin.play();        // destroy the child obj  
-    }
+      //this.foundcoin.play();        // destroy the child obj  
+      //scenecxt.scene.start('tiledPlatformScene');
 
-  
+      // get a random platform level from the array of levels
+      // remove the platform so that entry can't be used again
+      const platforms = scenecxt.randPlat;
+      const platformIndex = Math.floor(Math.random() * platforms.length);
+      const scene = platforms[platformIndex];
+      platforms.splice(platformIndex, 1);
 
-    timeBump() {
-      // increment level (aka score)
-      time++;
+      scenecxt.scene.start(scene);
+      //scenecxt.scene.start('slipperyPlatformScene');
     }
   }
