@@ -5,6 +5,15 @@ class Play extends Phaser.Scene {
       //variables
       //array of platform levels
       this.randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];
+
+      // time display
+      this.timerConfig = {
+        fontFamily: 'Courier',
+        fontSize: '28px',
+        backgroundColor: '#F3B141',
+        color: '#843605',
+      }
+      
     }
     
     preload() {
@@ -82,7 +91,7 @@ class Play extends Phaser.Scene {
       });
 
       //add timer to screen
-      this.timerRight = this.add.text(500, 30, time);
+      this.timerRight = this.add.text(500, 30, time, this.timerConfig);
 
       //add points to screen
       this.pointsLeft = this.add.text(140, 30, points);
