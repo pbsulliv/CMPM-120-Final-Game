@@ -125,6 +125,12 @@ class SlipperyPlatform extends Phaser.Scene {
         this.swap = this.input.keyboard.addKey('S');
         this.reload = this.input.keyboard.addKey('R');
 
+        // set up timer (triggers callback every second)
+        this.Timer = this.time.addEvent(countdownConfig);
+
+        //add timer to screen
+        this.timerRight = this.add.text(500, 30, time, timerConfig);
+
         // debug
         //this.scene.start("");
     }
@@ -168,6 +174,12 @@ class SlipperyPlatform extends Phaser.Scene {
             this.scene.start('playScene');
         }
 
+        // have we run out of time
+        checkOutOfTime(this);
+
+        // render current time left
+        this.timerRight.text = time;
+        
         //debug
         //console.log(this.p1.y);
         //console.log(this.p1.x);

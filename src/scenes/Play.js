@@ -74,19 +74,13 @@ class Play extends Phaser.Scene {
       }
 
       // set up timer (triggers callback every second)
-      this.Timer = this.time.addEvent({
-        delay: 1000,
-        callback: this.timeBump,
-        callbackScope: this,
-        loop: true
-      });
+      this.Timer = this.time.addEvent(countdownConfig);
 
       //add timer to screen
       this.timerRight = this.add.text(500, 30, time, timerConfig);
 
       //add points to screen
       this.pointsLeft = this.add.text(140, 30, points);
-
     }
 
     update() {
@@ -101,12 +95,9 @@ class Play extends Phaser.Scene {
         this.sound.play('foundcoin');
       }
 
-      if(time === 0){
-        this.scene.start('BadEndScene');
-        game.sound.stopAll();
-        this.sound.play('noluck');
-      }
-
+      // have we run out of time
+      checkOutOfTime(this);
+    
       this.timerRight.text = time;
 
       this.pointsLeft.text = points;
@@ -139,11 +130,5 @@ class Play extends Phaser.Scene {
 
       scenecxt.scene.start(scene);
       //scenecxt.scene.start('slipperyPlatformScene');
-    }
-
-  
-    // decrease the amount of time left
-    timeBump() {
-      time--;
     }
   }

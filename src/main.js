@@ -2,9 +2,14 @@
 
 // Define Global Vars
 let cursors;
-let time = 12;
+let time;
 let points = 0;
 let inventory = {};
+
+// decrease the amount of time left
+function timeBump() {
+    time--;
+}
 
 // time display
 const timerConfig = {
@@ -12,7 +17,15 @@ const timerConfig = {
     fontSize: '28px',
     backgroundColor: '#F3B141',
     color: '#843605',
-}
+};
+
+// timer configuration
+const countdownConfig = {
+    delay: 1000,
+    callback: timeBump,
+    callbackScope: this,
+    loop: true
+};
 
 // reserve keyboard vars
 let keySPACE, keyLEFT, keyRIGHT;
@@ -75,3 +88,11 @@ game.scene.add('slipperyPlatformScene', slipperyPlatformScene);
 
 const centerX = game.config.width/2;
 const centerY = game.config.height/2;
+
+function checkOutOfTime(theScene) {
+    if(time === 0) {
+        theScene.scene.start('BadEndScene');
+        game.sound.stopAll();
+        theScene.sound.play('noluck');
+    }
+}

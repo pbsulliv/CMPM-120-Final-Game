@@ -116,6 +116,12 @@ class TiledPlatform extends Phaser.Scene {
 
         // debug
         //this.scene.start("");
+
+        // set up timer (triggers callback every second)
+        this.Timer = this.time.addEvent(countdownConfig);
+
+        //add timer to screen
+        this.timerRight = this.add.text(500, 30, time, timerConfig);
     }
 
     update() {
@@ -160,6 +166,12 @@ class TiledPlatform extends Phaser.Scene {
         //debug
         //console.log(this.p1.y);
         //console.log(this.p1.x);
+
+        // have we run out of time
+        checkOutOfTime(this);
+    
+        // render current time left
+        this.timerRight.text = time;
     }
 
     
