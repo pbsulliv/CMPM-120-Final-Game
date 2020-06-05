@@ -5,15 +5,6 @@ class Play extends Phaser.Scene {
       //variables
       //array of platform levels
       this.randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];
-
-      // time display
-      this.timerConfig = {
-        fontFamily: 'Courier',
-        fontSize: '28px',
-        backgroundColor: '#F3B141',
-        color: '#843605',
-      }
-      
     }
     
     preload() {
@@ -91,7 +82,7 @@ class Play extends Phaser.Scene {
       });
 
       //add timer to screen
-      this.timerRight = this.add.text(500, 30, time, this.timerConfig);
+      this.timerRight = this.add.text(500, 30, time, timerConfig);
 
       //add points to screen
       this.pointsLeft = this.add.text(140, 30, points);
@@ -110,7 +101,7 @@ class Play extends Phaser.Scene {
         this.sound.play('foundcoin');
       }
 
-      if(time === 12){
+      if(time === 0){
         this.scene.start('BadEndScene');
         game.sound.stopAll();
         this.sound.play('noluck');
@@ -151,9 +142,8 @@ class Play extends Phaser.Scene {
     }
 
   
-
+    // decrease the amount of time left
     timeBump() {
-      // increment level (aka score)
-      time++;
+      time--;
     }
   }

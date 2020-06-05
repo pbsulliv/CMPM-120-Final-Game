@@ -192,7 +192,7 @@ class SlipperyPlatform extends Phaser.Scene {
 
     slipClockCollision(){
         this.clock.destroy();
-        time = (time - 10);  //add time
+        time += 10;  //add time
     }
     
 }
