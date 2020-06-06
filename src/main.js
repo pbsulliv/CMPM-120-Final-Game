@@ -40,6 +40,8 @@ let menuScene = new Menu();
 let playScene = new Play(); 
 let tiledPlatformScene = new TiledPlatform();
 let slipperyPlatformScene = new SlipperyPlatform();
+let largePlatformScene1 = new LargePlatform1();
+let largePlatformScene2 = new LargePlatform2();
 
 let config = {
     parent: 'myGame',
@@ -64,7 +66,7 @@ let config = {
             }
         }
     },
-    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LabScene2, GoodEnd, BadEnd]
+    scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LargePlatform1, LargePlatform2, LabScene2, GoodEnd, BadEnd]
 
 }
 
@@ -77,6 +79,7 @@ game.scene.add('titleScene', titleScene);
 game.scene.add('narrativeScene', narrativeScene);
 
 game.scene.add('narrativeScene2', narrativeScene2);
+
 game.scene.start('menuScene');
 
 game.scene.add('menuScene', menuScene);
@@ -86,6 +89,10 @@ game.scene.add('playScene', playScene);
 game.scene.add('tiledPlatformScene', tiledPlatformScene);
 
 game.scene.add('slipperyPlatformScene', slipperyPlatformScene);
+
+game.scene.add('largePlatformScene1', largePlatformScene1);
+
+game.scene.add('largePlatformScene2', largePlatformScene2);
 
 const centerX = game.config.width/2;
 const centerY = game.config.height/2;
