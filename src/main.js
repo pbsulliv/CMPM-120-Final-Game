@@ -5,6 +5,7 @@ let cursors;
 let time;
 let points = 0;
 let inventory = {};
+let randPlat = [];
 
 // decrease the amount of time left
 function timeBump() {

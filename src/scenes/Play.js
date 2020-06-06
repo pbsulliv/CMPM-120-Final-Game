@@ -2,10 +2,8 @@ class Play extends Phaser.Scene {
     constructor() {
       super("playScene");
 
-      //variables
-      //array of platform levels
-      this.randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];
     }
+    
     
     preload() {
       // load background
@@ -123,7 +121,7 @@ class Play extends Phaser.Scene {
 
       // get a random platform level from the array of levels
       // remove the platform so that entry can't be used again
-      const platforms = scenecxt.randPlat;
+      const platforms = randPlat;
       const platformIndex = Math.floor(Math.random() * platforms.length);
       const scene = platforms[platformIndex];
       platforms.splice(platformIndex, 1);
