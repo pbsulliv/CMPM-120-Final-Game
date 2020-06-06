@@ -13,12 +13,7 @@ class TiledPlatform extends Phaser.Scene {
     preload() {
         // load assets
         this.load.path = "./assets/";
-        /*
-        this.load.spritesheet("kenney_sheet", "colored_transparent_packed.png", {
-            frameWidth: 16,
-            frameHeight: 16
-        });
-        */
+        
         this.load.image("player", "Person.png");    // player
         this.load.image("1bit_tiles", "Tileset1.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map", "Platform1.json");    // Tiled JSON file
@@ -34,8 +29,7 @@ class TiledPlatform extends Phaser.Scene {
         const groundLayer = map.createStaticLayer("Ground", tileset, 0, 0);
         const sceneryLayer = map.createStaticLayer("Scenery", tileset, 0, 0);
         
-        // set map collision (two styles: uncomment *one* of the two lines below)
-        //groundLayer.setCollision([19, 20, 21, 67, 69, 120]);
+        // set map collision 
         groundLayer.setCollisionByProperty({ collides: true });
         
         // define a render debug so we can see the tilemap's collision bounds
@@ -47,14 +41,6 @@ class TiledPlatform extends Phaser.Scene {
         });
 
         // setup player
-        // place player on map from Tiled object layer data
-        // .findObject(objectLayer, callback [, context])
-        // "Find the first object in the given object layer that satisfies the provided testing function. I.e. finds the first object for which callback returns true."
-        
-        //const p1Spawn = map.findObject("Objects", obj => obj.name === "P1 Spawn");
-        //this.p1 = this.physics.add.sprite(p1Spawn.x, p1Spawn.y, "kenney_sheet", 450);
-
-        //this.p1 = this.physics.add.sprite(50, 350, "kenney_sheet", 450);
         this.p1 = this.physics.add.sprite(50, 350, "player");
 
         // set player physics properties
@@ -62,27 +48,6 @@ class TiledPlatform extends Phaser.Scene {
         this.p1.body.setMaxVelocity(this.MAX_X_VEL, this.MAX_Y_VEL);
         this.p1.body.setCollideWorldBounds(true);
         
-        /* TO-DO: player animations */
-
-        // generate coin objects from object data
-        // .createFromObjects(name, id, spriteConfig [, scene])
-        /*
-        this.coins = map.createFromObjects("Objects", "coin", {
-            key: "kenney_sheet",
-            frame: 214
-        }, this);
-        // createFromObjects can't add Physics Sprites, so we add physics manually
-        // https://photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.World.html#enable__anchor
-        // second parameter is 0: DYNAMIC_BODY or 1: STATIC_BODY
-        this.physics.world.enable(this.coins, Phaser.Physics.Arcade.STATIC_BODY);
-        // now use JS .map method to set a more accurate circle body on each sprite
-        this.coins.map((coin) => {
-            coin.body.setCircle(4).setOffset(4, 4); 
-        });
-        // then add the coins to a group
-        this.coinGroup = this.add.group(this.coins);
-        */
-
         // set gravity and physics world bounds (so collideWorldBounds works)
         this.physics.world.gravity.y = 2000;
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
@@ -90,20 +55,9 @@ class TiledPlatform extends Phaser.Scene {
         // create collider(s)/overlap(s)
         this.physics.add.collider(this.p1, groundLayer, this.groundCollision, null, this);
 
-        //this.physics.add.collider(this.p1, sceneryLayer, (p1, scenery) => {
-            //this.scene.start('playScene');
-        //});
-    
-        /*
-        this.physics.add.overlap(this.p1, this.coinGroup, (obj1, obj2) => {
-            obj2.destroy(); // remove coin on overlap
-        });
-        */
-
         // setup camera
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.p1, true, 0.25, 0.25); // (target, [,roundPixels][,lerpX][,lerpY])
-        //this.cameras.main.setDeadzone(50, 50);
 
         // define keyboard cursor input
         cursors = this.input.keyboard.createCursorKeys();
@@ -151,11 +105,6 @@ class TiledPlatform extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(this.reload)) {
             this.scene.restart();
         }
-        /*
-        if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            this.scene.start("parallaxLayersScene");
-        }
-        */
 
         //check for if the player has reached the end of the level
         if((this.p1.y == 92) && ((this.p1.x > 612) && (this.p1.x < 616))){
