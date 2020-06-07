@@ -79,10 +79,12 @@ class Play extends Phaser.Scene {
     update() {
       //scene switching
       if(cursors.right.isDown) {
+        game.sound.stopAll();
         this.scene.start('Lab2Scene');
       }
 
       if(cursors.left.isDown) {
+        game.sound.stopAll();
         this.scene.start('Lab2Scene');
       }
 
@@ -125,6 +127,7 @@ class Play extends Phaser.Scene {
       const scene = platforms[platformIndex];
       platforms.splice(platformIndex, 1);
 
+      game.sound.stopAll();
       scenecxt.scene.start(scene);
       //scenecxt.scene.start('slipperyPlatformScene');
     }
