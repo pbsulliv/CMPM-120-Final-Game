@@ -25,13 +25,6 @@ class Play extends Phaser.Scene {
       this.load.audio('noluck', './assets/noluck.wav')
       this.load.audio('bgmusic', './assets/Bobber Loop.wav')
 
-      // load asset path
-      /*
-      this.load.path = './assets/Images/';
-      this.load.image([
-        { key: 'PurpleFlask' },
-      ]);
-      */
     }
 
     create() {
@@ -89,7 +82,11 @@ class Play extends Phaser.Scene {
         this.scene.start('Lab2Scene');
       }
 
-      if(points === 3){
+      if(cursors.left.isDown) {
+        this.scene.start('Lab2Scene');
+      }
+
+      if(points === 5){
         this.scene.start('GoodEndScene');
         game.sound.stopAll();
         this.sound.play('foundcoin');
