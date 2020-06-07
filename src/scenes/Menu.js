@@ -8,8 +8,7 @@ class Menu extends Phaser.Scene {
     points = 0;   //items the player has collected, need x points to win
     inventory = {};  //an array that stores the objects the player has clicked on
                      //in the play and lab scenes so they are not spawned again when scene switching
-    //randPlat = ['tiledPlatformScene', 'slipperyPlatformScene'];  //array of platform levels
-    randPlat = ['largePlatformScene1'];  //array of platform levels
+    randPlat = ['tiledPlatformScene', 'slipperyPlatformScene', 'largePlatformScene1'];  //array of platform levels
 
 
     //menu configuration

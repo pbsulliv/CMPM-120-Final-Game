@@ -150,7 +150,7 @@ class LargePlatform1 extends Phaser.Scene {
 
     slipClockCollision(){
         this.clock.destroy();
-        time += 10;  //add time
+        time += 30;  //add time
     }
 
     transportCollision(){

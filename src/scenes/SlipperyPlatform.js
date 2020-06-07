@@ -54,7 +54,7 @@ class SlipperyPlatform extends Phaser.Scene {
         this.p1.body.setCollideWorldBounds(true);
 
         // set up clock item
-        this.clock = this.physics.add.sprite(50, 350, "clock");
+        this.clock = this.physics.add.sprite(112, 236, "clock");
         this.clock.body.setMaxVelocity(0, 0);
         this.clock.body.setCollideWorldBounds(true);
 
@@ -154,7 +154,7 @@ class SlipperyPlatform extends Phaser.Scene {
 
     slipClockCollision(){
         this.clock.destroy();
-        time += 10;  //add time
+        time += 30;  //add time
     }
     
 }

@@ -4,7 +4,7 @@ class Play extends Phaser.Scene {
 
     }
     
-    
+
     preload() {
       // load background
       this.load.image('background1', './assets/Background1.png');
@@ -13,6 +13,8 @@ class Play extends Phaser.Scene {
       this.load.image('PurpleFlask', './assets/Images/PurpleFlask.jpg');
 
       this.load.image('PurpleTube', './assets/Images/PurpleTube.jpg');
+
+      this.load.image('LightBlueTube', './assets/Images/Chemical_3.png');
 
       // load spritesheet
       this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
@@ -47,7 +49,7 @@ class Play extends Phaser.Scene {
       // create group to hold clickable objects
       this.click = this.add.group();
 
-      const sprites = [{name:"PurpleFlask", x:330, y:62}, {name:"PurpleTube", x:230, y:183}];
+      const sprites = [{name:"PurpleFlask", x:330, y:62}, {name:"PurpleTube", x:230, y:183}, {name:"LightBlueTube", x:655, y:95}];
 
       for (let i = 0; i < sprites.length; i++) {
         const currentSprite = sprites[i];
@@ -78,7 +80,7 @@ class Play extends Phaser.Scene {
       this.timerRight = this.add.text(500, 30, time, timerConfig);
 
       //add points to screen
-      this.pointsLeft = this.add.text(140, 30, points);
+      //this.pointsLeft = this.add.text(140, 30, points);  //debug
     }
 
     update() {
@@ -87,7 +89,7 @@ class Play extends Phaser.Scene {
         this.scene.start('Lab2Scene');
       }
 
-      if(points === 2){
+      if(points === 3){
         this.scene.start('GoodEndScene');
         game.sound.stopAll();
         this.sound.play('foundcoin');
@@ -98,7 +100,7 @@ class Play extends Phaser.Scene {
     
       this.timerRight.text = time;
 
-      this.pointsLeft.text = points;
+      //this.pointsLeft.text = points;  //debug
 
     }
 

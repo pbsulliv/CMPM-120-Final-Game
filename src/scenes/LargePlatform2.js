@@ -114,7 +114,7 @@ class LargePlatform2 extends Phaser.Scene {
 
         //check for if the player has reached the end of the level
         if((this.p1.y == 76) && ((this.p1.x > 38) && (this.p1.x < 41))){
-            points += 2;
+            points += 1;
             this.scene.start('playScene');
         }
 
