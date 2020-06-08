@@ -21,6 +21,7 @@ class LabScene2 extends Phaser.Scene {
         this.load.audio('foundcoin', './assets/foundcoin.wav')
         this.load.audio('noluck', './assets/noluck.wav')
         this.load.audio('bgmusic', './assets/Bobber Loop.wav')
+        this.load.audio('bounce', './assets/bounce.wav');
   
       }
   

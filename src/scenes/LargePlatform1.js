@@ -18,6 +18,11 @@ class LargePlatform1 extends Phaser.Scene {
         this.load.image("clock", "Clock.png");      // clock item
         this.load.image("2bit_tiles", "SlipTS.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map3", "LargePlatform1.json");    // Tiled JSON file
+
+        //load sound
+        this.load.audio('foundcoin', './assets/foundcoin.wav');
+        this.load.audio('bgmusic', './assets/Bobber Loop.wav');
+        this.load.audio('bounce', './assets/bounce.wav');
     }
 
     create() {
@@ -88,6 +93,8 @@ class LargePlatform1 extends Phaser.Scene {
         //add timer to screen
         this.timerRight = this.add.text(500, 30, time, timerConfig);
 
+        this.sound.play('bgmusic');
+
         // debug
         //this.scene.start("");
     }
@@ -112,6 +119,7 @@ class LargePlatform1 extends Phaser.Scene {
             //this.p1.anims.play('jump', true);
         }
         if(this.p1.body.blocked.down && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.play('bounce');
             this.p1.body.setVelocityY(this.JUMP_VELOCITY);
         }
 
@@ -149,11 +157,13 @@ class LargePlatform1 extends Phaser.Scene {
     }
 
     slipClockCollision(){
+        this.sound.play('foundcoin');
         this.clock.destroy();
         time += 30;  //add time
     }
 
     transportCollision(){
+        game.sound.stopAll();
         this.scene.start('largePlatformScene2');
     }
     

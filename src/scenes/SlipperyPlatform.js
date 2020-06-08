@@ -18,6 +18,11 @@ class SlipperyPlatform extends Phaser.Scene {
         this.load.image("clock", "Clock.png");      // clock item
         this.load.image("2bit_tiles", "SlipTS.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map2", "SlipPlatform.json");    // Tiled JSON file
+
+        //load sound
+        this.load.audio('foundcoin', './assets/foundcoin.wav');
+        this.load.audio('bgmusic', './assets/Bobber Loop.wav');
+        this.load.audio('bounce', './assets/bounce.wav');
     }
 
     create() {
@@ -86,6 +91,8 @@ class SlipperyPlatform extends Phaser.Scene {
         //add timer to screen
         this.timerRight = this.add.text(500, 30, time, timerConfig);
 
+        this.sound.play('bgmusic');
+
         // debug
         //this.scene.start("");
     }
@@ -110,6 +117,7 @@ class SlipperyPlatform extends Phaser.Scene {
             //this.p1.anims.play('jump', true);
         }
         if(this.p1.body.blocked.down && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.play('bounce');
             this.p1.body.setVelocityY(this.JUMP_VELOCITY);
         }
 
@@ -121,6 +129,7 @@ class SlipperyPlatform extends Phaser.Scene {
         //check for if the player has reached the end of the level
         if((this.p1.y == 140) && ((this.p1.x > 182) && (this.p1.x < 184))){
             points++;
+            game.sound.stopAll();
             this.scene.start('playScene');
         }
 
@@ -153,6 +162,7 @@ class SlipperyPlatform extends Phaser.Scene {
     }
 
     slipClockCollision(){
+        this.sound.play('foundcoin');
         this.clock.destroy();
         time += 30;  //add time
     }

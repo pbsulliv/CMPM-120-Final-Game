@@ -18,6 +18,11 @@ class LargePlatform2 extends Phaser.Scene {
         this.load.image("clock", "Clock.png");      // clock item
         this.load.image("2bit_tiles", "SlipTS.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map4", "LargePlatform2.json");    // Tiled JSON file
+
+        //load sound
+        this.load.audio('foundcoin', './assets/foundcoin.wav');
+        this.load.audio('bgmusic', './assets/Bobber Loop.wav');
+        this.load.audio('bounce', './assets/bounce.wav');
     }
 
     create() {
@@ -80,6 +85,8 @@ class LargePlatform2 extends Phaser.Scene {
         //add timer to screen
         this.timerRight = this.add.text(500, 30, time, timerConfig);
 
+        this.sound.play('bgmusic');
+
         // debug
         //this.scene.start("");
     }
@@ -104,6 +111,7 @@ class LargePlatform2 extends Phaser.Scene {
             //this.p1.anims.play('jump', true);
         }
         if(this.p1.body.blocked.down && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.play('bounce');
             this.p1.body.setVelocityY(this.JUMP_VELOCITY);
         }
 
@@ -115,6 +123,7 @@ class LargePlatform2 extends Phaser.Scene {
         //check for if the player has reached the end of the level
         if((this.p1.y == 76) && ((this.p1.x > 38) && (this.p1.x < 41))){
             points += 1;
+            game.sound.stopAll();
             this.scene.start('playScene');
         }
 

@@ -1,3 +1,17 @@
+/*
+Name of Game: Shrink or Grow
+  Team members: Pierce Sullivan, Lucky Medikonda, Alex Gulsoy
+  Date Completed: 6 June 2020, 6/7/2020
+  
+  Creative Tilt: We find that our game is technically interesting because 
+  the ways that the player interacts with the timer.  The player must constantly manage risk.  Is it worth trying to make all
+  the jumps at the same time, or take them one at a time?  Is it worth trying to get the clock item that extends the timer?  
+  The player must make skillful jumps and be able to evaluate risk
+*/
+//Based on code from Nathan Altice's Repository
+//https://github.com/nathanaltice?tab=repositories
+
+
 'use strict';
 
 // Define Global Vars
@@ -69,7 +83,6 @@ let config = {
         }
     },
     scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LargePlatform1, LargePlatform2, LabScene2, GoodEnd, BadEnd]
-    //scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, GoodEnd, TiledPlatform, SlipperyPlatform, LargePlatform1, LargePlatform2, LabScene2, Play, BadEnd]
 }
 
 // define game

@@ -20,10 +20,11 @@ class Play extends Phaser.Scene {
       this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
       this.load.spritesheet('BadGameEnd', './assets/bad-end-anim.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 22});
       // load sfx
-      this.load.audio('foundpart', './assets/foundpart.wav')
-      this.load.audio('foundcoin', './assets/foundcoin.wav')
-      this.load.audio('noluck', './assets/noluck.wav')
-      this.load.audio('bgmusic', './assets/Bobber Loop.wav')
+      this.load.audio('foundpart', './assets/foundpart.wav');
+      this.load.audio('foundcoin', './assets/foundcoin.wav');
+      this.load.audio('noluck', './assets/noluck.wav');
+      this.load.audio('bgmusic', './assets/Bobber Loop.wav');
+      this.load.audio('bounce', './assets/bounce.wav');
 
     }
 

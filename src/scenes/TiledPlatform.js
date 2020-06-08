@@ -17,6 +17,11 @@ class TiledPlatform extends Phaser.Scene {
         this.load.image("player", "Person.png");    // player
         this.load.image("1bit_tiles", "Tileset1.png");    // tile sheet
         this.load.tilemapTiledJSON("platform_map", "Platform1.json");    // Tiled JSON file
+
+        //load sound
+        this.load.audio('foundcoin', './assets/foundcoin.wav');
+        this.load.audio('bgmusic', './assets/Bobber Loop.wav');
+        this.load.audio('bounce', './assets/bounce.wav');
     }
 
     create() {
@@ -76,6 +81,8 @@ class TiledPlatform extends Phaser.Scene {
 
         //add timer to screen
         this.timerRight = this.add.text(500, 30, time, timerConfig);
+
+        this.sound.play('bgmusic');
     }
 
     update() {
@@ -98,6 +105,7 @@ class TiledPlatform extends Phaser.Scene {
             //this.p1.anims.play('jump', true);
         }
         if(this.p1.body.blocked.down && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.play('bounce');
             this.p1.body.setVelocityY(this.JUMP_VELOCITY);
         }
 
@@ -109,6 +117,7 @@ class TiledPlatform extends Phaser.Scene {
         //check for if the player has reached the end of the level
         if((this.p1.y == 92) && ((this.p1.x > 612) && (this.p1.x < 616))){
             points++;
+            game.sound.stopAll();
             this.scene.start('playScene');
         }
 
