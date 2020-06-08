@@ -42,6 +42,8 @@ let tiledPlatformScene = new TiledPlatform();
 let slipperyPlatformScene = new SlipperyPlatform();
 let largePlatformScene1 = new LargePlatform1();
 let largePlatformScene2 = new LargePlatform2();
+let GoodEndScene = new GoodEnd();
+let BadEndScene = new BadEnd();
 
 let config = {
     parent: 'myGame',
@@ -67,9 +69,8 @@ let config = {
         }
     },
     scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, Play, TiledPlatform, SlipperyPlatform, LargePlatform1, LargePlatform2, LabScene2, GoodEnd, BadEnd]
-
+    //scene: [ TitleScene, NarrativeScene, NarrativeScene2, Menu, GoodEnd, TiledPlatform, SlipperyPlatform, LargePlatform1, LargePlatform2, LabScene2, Play, BadEnd]
 }
-
 
 // define game
 let game = new Phaser.Game(config);
@@ -93,6 +94,8 @@ game.scene.add('slipperyPlatformScene', slipperyPlatformScene);
 game.scene.add('largePlatformScene1', largePlatformScene1);
 
 game.scene.add('largePlatformScene2', largePlatformScene2);
+
+game.scene.add('GoodEndScene', GoodEndScene);
 
 const centerX = game.config.width/2;
 const centerY = game.config.height/2;

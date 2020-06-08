@@ -2,8 +2,21 @@ class GoodEnd extends Phaser.Scene {
     constructor() {
       super("GoodEndScene");
     }
+    preload(){
+      this.load.image('background', './assets/Images/titleBack.jpg');
+      this.load.image('marble', './assets/marble_tile_ground2.jpg');
+      // this.load.image('Shelves', './assets/Images/Shelves.png');
+      // this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
+    }
 
     create() {
+
+      this.marble = this.add.tileSprite(0, 0, 640, 480, 'marble').setOrigin(0, 0);
+        //adding background image
+        this.background = this.add.tileSprite(0, -100, 640, 480, 'background').setOrigin(0, 0);
+
+        // this.add.image(320, 250, 640, 480, 'Shelves').setOrigin(0, 0);
+
         //menu configuration
         let menuConfig = {
           fontFamily: 'Times New Roman',
@@ -23,13 +36,13 @@ class GoodEnd extends Phaser.Scene {
       // define keys
       keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-      var endgame = this.add.sprite(0, 0, 'endgameAni').setOrigin(0, 0);
+      var endgame = this.add.sprite(centerX-250, centerY-200, 'endgameAni').setOrigin(0, 0);
 
       // end game animation config
       this.anims.create({
         key: 'endgameAni',
         frames: this.anims.generateFrameNumbers('GameEnd', { start: 0, end: 98, first: 0}),
-        frameRate: 30
+        frameRate: 20
       });
 
       endgame.anims.play('endgameAni');

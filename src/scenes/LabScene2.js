@@ -9,9 +9,9 @@ class LabScene2 extends Phaser.Scene {
   
         // load images
   
-        this.load.image('Vial', './assets/Images/Chemical_2.png');
+        this.load.image('Vial', './assets/Chemical_2.png');
   
-        this.load.image('BlueVial', './assets/Images/Chemical_6.png');
+        this.load.image('BlueVial', './assets/Chemical_6.png');
   
         // load spritesheet
         this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});

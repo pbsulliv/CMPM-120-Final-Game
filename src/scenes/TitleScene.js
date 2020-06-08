@@ -28,9 +28,6 @@ class TitleScene extends Phaser.Scene{
         var Grow = this.add.sprite(game.config.width/2-280, game.config.height/2-300, 'Grow').setOrigin(0,0);
         Grow.anims.play('explode');
 
-        //add audio
-        //this.sound.play('Squishy');
-
         //adding text for title scene
         let centerX = game.config.width/2;
         let centerY = game.config.height/2;

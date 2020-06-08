@@ -14,11 +14,11 @@ class Play extends Phaser.Scene {
 
       this.load.image('PurpleTube', './assets/Images/PurpleTube.jpg');
 
-      this.load.image('LightBlueTube', './assets/Images/Chemical_3.png');
+      this.load.image('LightBlueTube', './assets/Chemical_3.png');
 
       // load spritesheet
       this.load.spritesheet('GameEnd', './assets/Game_Over_Animation_SpriteSheet.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 98});
-
+      this.load.spritesheet('BadGameEnd', './assets/bad-end-anim.png', {frameWidth: 640, frameHeight: 480, startFrame: 0, endFrame: 22});
       // load sfx
       this.load.audio('foundpart', './assets/foundpart.wav')
       this.load.audio('foundcoin', './assets/foundcoin.wav')
@@ -42,7 +42,7 @@ class Play extends Phaser.Scene {
       // create group to hold clickable objects
       this.click = this.add.group();
 
-      const sprites = [{name:"PurpleFlask", x:330, y:62}, {name:"PurpleTube", x:230, y:183}, {name:"LightBlueTube", x:655, y:95}];
+      const sprites = [{name:"PurpleFlask", x:330, y:62}, {name:"PurpleTube", x:230, y:183}, {name:"LightBlueTube", x:630, y:95}];
 
       for (let i = 0; i < sprites.length; i++) {
         const currentSprite = sprites[i];
