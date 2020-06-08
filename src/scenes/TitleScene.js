@@ -34,40 +34,40 @@ class TitleScene extends Phaser.Scene{
         let textSpacer = 64;
 
         let titleConfig = {
-            fontFamily: 'Virale',
-            fontSize: '20px',
-            color: '#ffffff',
+            fontFamily: 'Broadway Regular',
+            fontSize: '25px',
+            // color: '#ffffff',
             align: 'center',
             fontStyle: 'bold',
             color: '#33A2FF',
             align: 'center',
             fontStyle: 'bold',
         }
-        let titleText = this.add.text(centerX-60, centerY/2+35, 'Shrink', titleConfig).setOrigin(0, 0); 
-        titleConfig.fontSize = '35px';
-        let titleText2 = this.add.text(centerX-40, centerY/2+55, 'or', titleConfig).setOrigin(0, 0);
-        titleConfig.fontSize = '50px';
-        let titleText3 = this.add.text(centerX-90, centerY/2+80, 'Grow', titleConfig).setOrigin(0, 0); 
+        let titleText = this.add.text(centerX-60, centerY/2+10, 'Shrink', titleConfig).setOrigin(0, 0); 
+        titleConfig.fontSize = '40px';
+        let titleText2 = this.add.text(centerX-40, centerY/2+45, 'or', titleConfig).setOrigin(0, 0);
+        titleConfig.fontSize = '55px';
+        let titleText3 = this.add.text(centerX-91, centerY/2+90, 'Grow', titleConfig).setOrigin(0, 0); 
  
 
         let subtitleConfig = {
-            fontFamily: 'Virale',
-            fontSize: '21px',
+            fontFamily: 'Broadway Regular',
+            fontSize: '20px',
             color: '#33A2FF',
             align: 'center',
             fontStyle: 'bold',
         }
-        this.add.text(centerX/2+80, centerY/2+150, 'Made with\nPhaser 3', subtitleConfig).setOrigin(0, 0); 
+        this.add.text(centerX/2+85, centerY/2+160, 'Made with\nPhaser 3', subtitleConfig).setOrigin(0, 0); 
         
         let transitionConfig = {
-            fontFamily: 'Virale',
+            fontFamily: 'Broadway Regular',
             fontSize: '20px',
             color: '#3300cc',
             align: 'center',
             fontStyle: 'bold',
         }
 
-        this.add.text(game.config.width/2-185, game.config.height/2+200, 'Click anywhere\non the screen to continue',
+        this.add.text(game.config.width/2-153, game.config.height/2+190, 'Click anywhere\non the screen to continue',
          transitionConfig).setOrigin(0, 0);
         
          this.input.once('pointerdown', function (event){
